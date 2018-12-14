@@ -30,4 +30,11 @@ public class CustomerController {
 		List<CustomerDto> customers = customerApplicationService.get(page, pageSize);
 		return new ResponseEntity<Object>(customers, HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "byIdentityDocument", produces = "application/json; charset=UTF-8")
+	ResponseEntity<Object> getByIdentityDocument(
+			@RequestParam(value = "identityDocument", required = true, defaultValue = "") String identityDocument) {
+		CustomerDto customer = customerApplicationService.getByIdentityDocument(identityDocument);
+		return new ResponseEntity<Object>(customer, HttpStatus.OK);
+	}
 }

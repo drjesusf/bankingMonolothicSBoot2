@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/users/signup").permitAll()//
         .antMatchers("/users/create").permitAll()//
         .antMatchers("/h2-console/**/**").permitAll()
-        //.antMatchers("/api/customers").permitAll()
+        .antMatchers("/api/customers").permitAll()
         // Disallow everything else..
         .anyRequest().authenticated();
 

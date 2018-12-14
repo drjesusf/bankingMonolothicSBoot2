@@ -1,7 +1,10 @@
 package banking.ads.application.users.dtos;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,13 +22,26 @@ public class UserDtoDeserializer extends JsonDeserializer<UserDto> {
 		public UserDto deserialize(JsonParser jsonParser, DeserializationContext ctxt)
 				throws IOException, JsonProcessingException {
 			UserDto userDto = null;
+			Set<UserClaimDto> claims = new HashSet<UserClaimDto>();
 			try {
 	    		ObjectCodec objectCodec = jsonParser.getCodec();
 	            JsonNode node = objectCodec.readTree(jsonParser);
 	            String name = node.get("name").asText();
 	            String password = node.get("password").asText();
-	            List<UserClaimDto> claims = (List<UserClaimDto>) node.get("claims").elements();
+	            /*Iterator<JsonNode> nodes = node.get("claims").elements();
+	            while(nodes.hasNext()) {
+	            	JsonNode claimNode = nodes.next();
+	            	String type = claimNode.get("type").asText();
+	            	String value = claimNode.get("value").asText();
+	            	UserClaimDto userClaim = new UserClaimDto();
+	            	userClaim.setType(type);
+	            	userClaim.setValue(value);
+	            	claims.add(userClaim);
+	            }*/
+	            
 	            userDto = new UserDto(name, password);
+	            //userDto.setClaims(claims);
+	            
 	    	} catch(Exception ex) {
 	    		userDto = new UserDto(RequestBodyType.INVALID.toString(), RequestBodyType.INVALID.toString());
 	    	}

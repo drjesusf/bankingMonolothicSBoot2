@@ -2,7 +2,10 @@ package banking.ads.infrastructure.customers.persistence.hibernate.repository;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,5 +27,14 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 		criteria.setMaxResults(pageSize);
 		customers = criteria.list();
 		return customers;
+	}
+	@Override
+	public Customer getIdentityDocument(String identityDocument) {
+		Criteria criteria = getSession().createCriteria(Customer.class);
+		criteria.add(Restrictions.eq("identityDocument", identityDocument));
+		
+		Customer customer = (Customer)criteria.uniqueResult();
+		return customer;
+		 
 	}
 }

@@ -1,0 +1,1 @@
+INSERT INTO customer(customer_id, first_name, last_name, active,identityDocument) VALUES(4, 'Jesus', 'Ramirez', 1,'40124578');

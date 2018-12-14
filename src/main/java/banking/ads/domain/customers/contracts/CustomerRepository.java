@@ -7,4 +7,6 @@ import seedWork.IRepository;
 
 public interface CustomerRepository extends IRepository<Customer> {
 	public List<Customer> get(int page, int pageSize);
+
+	public Customer getIdentityDocument(String identityDocument);
 }

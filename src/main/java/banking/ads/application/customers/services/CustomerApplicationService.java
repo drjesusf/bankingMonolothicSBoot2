@@ -42,4 +42,10 @@ public class CustomerApplicationService {
 		}
 		return notification;
 	}
+
+	public CustomerDto getByIdentityDocument(String identityDocument) {
+		Customer customer = this.customerRepository.getIdentityDocument(identityDocument);
+		CustomerDto customerDto = mapper.map(customer, new TypeToken<Customer>() {}.getType());
+		return customerDto;
+	}
 }

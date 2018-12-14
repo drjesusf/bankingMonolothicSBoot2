@@ -1,5 +1,6 @@
 package banking.ads.application.users.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -82,6 +83,8 @@ public class UserApplicationService {
 
 	private List<UserClaimDto> getUserClaims(User authUser) throws Exception {
 		List<UserClaim> claims = this.userClaimRepository.findByUserId(authUser.getId());
+		if(claims == null || claims.isEmpty()) return new ArrayList<UserClaimDto>();
+		
 		return mapper.map(claims, new TypeToken<List<UserClaimDto>>() {}.getType());
 	}
 	
@@ -92,6 +95,7 @@ public class UserApplicationService {
 		userAuthDto.setAuthenticated(true);
 		userAuthDto.setBearerToken(new UUID(0L, 0L).toString());
 		List<UserClaimDto> claims = this.getUserClaims(authUser);
+		userAuthDto.setClaims(claims);
 		
 		String token = jwtTokenProvider.buildJwtToken(userAuthDto);
 		userAuthDto.setBearerToken(token); 
