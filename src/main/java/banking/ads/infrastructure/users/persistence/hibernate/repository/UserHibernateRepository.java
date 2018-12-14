@@ -17,6 +17,7 @@ import banking.ads.domain.users.contracts.IUserRepository;
 @Repository
 public class UserHibernateRepository extends HibernateRepository<User> implements IUserRepository {
 
+	@SuppressWarnings("deprecation")
 	public User getByName(String name) {
 		User user = null;
 		Criteria criteria = getSession().createCriteria(User.class, "u");
@@ -32,7 +33,7 @@ public class UserHibernateRepository extends HibernateRepository<User> implement
 		return user;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<User> getPaginated(int page, int pageSize) {
 		List<User> users = null;

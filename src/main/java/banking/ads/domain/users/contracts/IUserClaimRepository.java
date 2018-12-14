@@ -1,8 +1,6 @@
 package banking.ads.domain.users.contracts;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 import banking.ads.domain.users.entities.UserClaim;
 

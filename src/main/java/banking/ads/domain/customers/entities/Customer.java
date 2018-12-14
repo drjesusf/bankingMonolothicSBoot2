@@ -1,7 +1,5 @@
 package banking.ads.domain.customers.entities;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import banking.ads.domain.accounts.entities.Account;

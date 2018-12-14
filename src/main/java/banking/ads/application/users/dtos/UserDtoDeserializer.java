@@ -1,11 +1,6 @@
 package banking.ads.application.users.dtos;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -22,7 +17,7 @@ public class UserDtoDeserializer extends JsonDeserializer<UserDto> {
 		public UserDto deserialize(JsonParser jsonParser, DeserializationContext ctxt)
 				throws IOException, JsonProcessingException {
 			UserDto userDto = null;
-			Set<UserClaimDto> claims = new HashSet<UserClaimDto>();
+			//Set<UserClaimDto> claims = new HashSet<UserClaimDto>();
 			try {
 	    		ObjectCodec objectCodec = jsonParser.getCodec();
 	            JsonNode node = objectCodec.readTree(jsonParser);

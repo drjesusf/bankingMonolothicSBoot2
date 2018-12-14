@@ -8,7 +8,6 @@ import banking.ads.domain.accounts.entities.Account;
 import banking.ads.domain.transactions.contracts.ITransferDomainService;
 import banking.ads.domain.transactions.services.TransferDomainService;
 import banking.ads.infrastructure.accounts.persistence.hibernate.repository.AccountHibernateRepository;
-import banking.ads.infrastructure.customers.persistence.hibernate.repository.CustomerHibernateRepositoryImpl;
 
 public class TransactionApplicationService implements TransactionApplicationServiceInterface{
 

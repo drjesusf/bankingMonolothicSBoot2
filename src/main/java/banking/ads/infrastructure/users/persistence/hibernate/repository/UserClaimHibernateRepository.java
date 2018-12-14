@@ -16,7 +16,7 @@ import banking.ads.infrastructure.hibernate.HibernateRepository;
 @Repository
 public class UserClaimHibernateRepository extends HibernateRepository<UserClaim> implements IUserClaimRepository{
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<UserClaim> findByUserId(Long userId) throws Exception {
 		List<UserClaim> userClaims = null;

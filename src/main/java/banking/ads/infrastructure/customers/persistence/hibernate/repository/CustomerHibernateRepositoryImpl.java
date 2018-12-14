@@ -2,8 +2,6 @@ package banking.ads.infrastructure.customers.persistence.hibernate.repository;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -19,7 +17,7 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 	public CustomerHibernateRepositoryImpl() {
 		
 	}
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<Customer> get(int page,int pageSize){
 		List<Customer> customers= null;
 		Criteria criteria = getSession().createCriteria(Customer.class);
@@ -28,6 +26,7 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 		customers = criteria.list();
 		return customers;
 	}
+	@SuppressWarnings("deprecation")
 	@Override
 	public Customer getIdentityDocument(String identityDocument) {
 		Criteria criteria = getSession().createCriteria(Customer.class);

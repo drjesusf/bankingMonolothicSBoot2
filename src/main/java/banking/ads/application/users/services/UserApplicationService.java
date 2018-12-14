@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import banking.ads.security.JwtTokenProvider;
-import banking.ads.security.Role;
 import banking.ads.api.enumeration.RequestBodyType;
 import seedWork.Notification;
 import banking.ads.application.users.dtos.UserAuthDto;
