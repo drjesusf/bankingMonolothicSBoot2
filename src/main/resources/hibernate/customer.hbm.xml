@@ -7,6 +7,7 @@
         <id name="id" column="customer_id">
             <generator class="native"/>
         </id>
+        <property name="identityDocument" column="identityDocument"/>
         <property name="firstName" column="first_name"/>
         <property name="lastName" column="last_name"/>
         <property name="isActive" column="active"/>

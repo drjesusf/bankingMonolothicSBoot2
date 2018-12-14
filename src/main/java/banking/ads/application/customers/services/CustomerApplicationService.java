@@ -45,7 +45,7 @@ public class CustomerApplicationService {
 
 	public CustomerDto getByIdentityDocument(String identityDocument) {
 		Customer customer = this.customerRepository.getIdentityDocument(identityDocument);
-		CustomerDto customerDto = mapper.map(customer, new TypeToken<Customer>() {}.getType());
+		CustomerDto customerDto = mapper.map(customer, new TypeToken<CustomerDto>() {}.getType());
 		return customerDto;
 	}
 }

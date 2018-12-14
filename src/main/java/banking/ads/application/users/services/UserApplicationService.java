@@ -84,7 +84,16 @@ public class UserApplicationService {
 		List<UserClaim> claims = this.userClaimRepository.findByUserId(authUser.getId());
 		if(claims == null || claims.isEmpty()) return new ArrayList<UserClaimDto>();
 		
-		return mapper.map(claims, new TypeToken<List<UserClaimDto>>() {}.getType());
+		List<UserClaimDto> claimsDtos = new ArrayList<UserClaimDto>(); 
+		for (UserClaim userClaim : claims) {
+			UserClaimDto claimDto = new UserClaimDto();
+			claimDto.setId(userClaim.getId());
+			claimDto.setType(userClaim.getType());
+			claimDto.setValue(userClaim.getValue());
+			claimsDtos.add(claimDto);
+		}
+		//return mapper.map(claims, new TypeToken<List<UserClaimDto>>() {}.getType());
+		return claimsDtos;
 	}
 	
 	private UserAuthDto buildUserAuthDto(User authUser) throws Exception {

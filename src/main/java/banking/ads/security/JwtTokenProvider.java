@@ -1,6 +1,7 @@
 package banking.ads.security;
 
 import java.util.Base64;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -87,8 +88,10 @@ public class JwtTokenProvider {
   }
   
   public Authentication getAuthentication(String token) {
-    UserDetails userDetails = myUserDetails.loadUserByUsername(getUsername(token));
-    return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    //UserDetails userDetails = myUserDetails.loadUserByUsername(getUsername(token));
+	String userName =  getUsername(token);
+    //return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+	return new UsernamePasswordAuthenticationToken(userName, null, Collections.emptyList());
   }
 
   public String getUsername(String token) {
