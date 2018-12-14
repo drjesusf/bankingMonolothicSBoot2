@@ -48,4 +48,10 @@ public class CustomerApplicationService {
 		CustomerDto customerDto = mapper.map(customer, new TypeToken<CustomerDto>() {}.getType());
 		return customerDto;
 	}
+
+	public List<CustomerDto> getByLastname(String lastName) {
+		List<Customer> customers = this.customerRepository.getByLastname(lastName);
+		List<CustomerDto> customersDto = mapper.map(customers, new TypeToken<List<CustomerDto>>() {}.getType());
+        return customersDto;
+	}
 }

@@ -37,4 +37,11 @@ public class CustomerController {
 		CustomerDto customer = customerApplicationService.getByIdentityDocument(identityDocument);
 		return new ResponseEntity<Object>(customer, HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "byLastname", produces = "application/json; charset=UTF-8")
+	ResponseEntity<Object> getByLastname(
+			@RequestParam(value = "lastname", required = true, defaultValue = "") String lastName) {
+		List<CustomerDto> customers = customerApplicationService.getByLastname(lastName);
+		return new ResponseEntity<Object>(customers, HttpStatus.OK);
+	}
 }

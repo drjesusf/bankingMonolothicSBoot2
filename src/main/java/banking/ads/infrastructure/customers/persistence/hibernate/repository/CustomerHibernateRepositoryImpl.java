@@ -36,4 +36,13 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 		return customer;
 		 
 	}
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Customer> getByLastname(String lastName) {
+		List<Customer> customers= null;
+		Criteria criteria = getSession().createCriteria(Customer.class);
+		criteria.add(Restrictions.like("lastName", lastName));
+		customers = criteria.list();
+		return customers;
+	}
 }

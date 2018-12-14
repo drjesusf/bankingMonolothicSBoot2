@@ -9,4 +9,6 @@ public interface CustomerRepository extends IRepository<Customer> {
 	public List<Customer> get(int page, int pageSize);
 
 	public Customer getIdentityDocument(String identityDocument);
+
+	public List<Customer> getByLastname(String lastName);
 }
