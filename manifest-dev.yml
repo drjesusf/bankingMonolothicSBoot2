@@ -1,6 +1,6 @@
 applications:
 - name: banking-ads-g01
-  path: /home/travis/build/drjesusf/bankingMonolithicSboot/target/bankingMonolithicSboot-0.0.1-SNAPSHOT.war
+  path: /target/bankingMonolithicSboot-0.0.1-SNAPSHOT.war
   buildpacks: 
     - java_buildpack 
   disk_quota: 1024M
