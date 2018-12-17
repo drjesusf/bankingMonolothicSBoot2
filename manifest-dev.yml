@@ -4,5 +4,7 @@ applications:
   buildpacks: 
     - java_buildpack 
   disk_quota: 1024M
+  services:
+    - mysql
   
   
