@@ -16,7 +16,7 @@ import banking.ads.application.users.services.UserApplicationService;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 	//@Autowired
 	//private JwtTokenProvider jwtTokenProvider;
