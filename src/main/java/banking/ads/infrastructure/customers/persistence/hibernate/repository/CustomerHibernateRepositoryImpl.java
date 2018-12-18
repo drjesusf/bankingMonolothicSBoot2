@@ -22,7 +22,9 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<Customer> get(int page,int pageSize){
 		List<Customer> customers= null;
-		Criteria criteria = getSession().createCriteria(Customer.class);
+		Criteria criteria = getSession().createCriteria(Customer.class,"c");
+		criteria.createAlias("c.accounts", "a", JoinType.LEFT_OUTER_JOIN);
+		
 		criteria.setFirstResult(page);
 		criteria.setMaxResults(pageSize);
 		customers = criteria.list();
@@ -32,8 +34,9 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 	@SuppressWarnings("deprecation")
 	@Override
 	public Customer getIdentityDocument(String identityDocument) {
-		Criteria criteria = getSession().createCriteria(Customer.class);
-		criteria.add(Restrictions.eq("identityDocument", identityDocument));
+		Criteria criteria = getSession().createCriteria(Customer.class,"c");
+		criteria.createAlias("c.accounts", "a", JoinType.LEFT_OUTER_JOIN);
+		criteria.add(Restrictions.eq("c.identityDocument", identityDocument));
 		
 		Customer customer = (Customer)criteria.uniqueResult();
 		return customer;

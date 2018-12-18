@@ -10,6 +10,15 @@ public class CustomerDto {
 	private long id;
 	private String firstName;
 	private String lastName;
+	private String identityDocument;
+	public String getIdentityDocument() {
+		return identityDocument;
+	}
+
+	public void setIdentityDocument(String identityDocument) {
+		this.identityDocument = identityDocument;
+	}
+
 	private Boolean isActive;
 	private Set<BankAccountDto> bankAccountsDto;
 	

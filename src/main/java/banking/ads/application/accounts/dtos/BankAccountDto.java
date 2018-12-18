@@ -1,13 +1,11 @@
 package banking.ads.application.accounts.dtos;
 
-import java.math.BigDecimal;
-
 import banking.ads.application.customers.dtos.CustomerDto;
 
 public class BankAccountDto {
 	private long id;
 	private String number;
-	private BigDecimal balance;
+	private double balance;
 	private boolean isLocked;
 	private CustomerDto customer;
 
@@ -27,11 +25,11 @@ public class BankAccountDto {
 		this.number = number;
 	}
 
-	public BigDecimal getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(BigDecimal balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 
