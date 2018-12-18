@@ -1,7 +1,6 @@
 package banking.ads.infrastructure.accounts.persistence.hibernate.repository;
 
 import org.hibernate.Criteria;
-import org.hibernate.LockMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

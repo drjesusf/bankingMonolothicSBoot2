@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import banking.ads.application.accounts.contracts.AccountApplicationService;
 import banking.ads.application.accounts.dtos.BankAccountDto;
-import banking.ads.application.customers.dtos.CustomerDto;
 import banking.ads.domain.accounts.contracts.BankAccountRepository;
 import banking.ads.domain.accounts.entities.Account;
 import banking.ads.domain.customers.contracts.CustomerRepository;
