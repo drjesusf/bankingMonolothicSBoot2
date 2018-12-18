@@ -1,28 +1,35 @@
 package banking.ads.application.transactions.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import banking.ads.application.transactions.contracts.TransactionApplicationServiceInterface;
 import banking.ads.application.transactions.dtos.NewTransferDto;
 import banking.ads.application.transactions.dtos.NewTransferResponseDto;
-import banking.ads.domain.accounts.contracts.IAccountRepository;
+import banking.ads.domain.accounts.contracts.BankAccountRepository;
 import banking.ads.domain.accounts.entities.Account;
 import banking.ads.domain.transactions.contracts.ITransferDomainService;
-import banking.ads.domain.transactions.services.TransferDomainService;
-import banking.ads.infrastructure.accounts.persistence.hibernate.repository.AccountHibernateRepository;
 
+@Service
 public class TransactionApplicationService implements TransactionApplicationServiceInterface{
 
+	@Autowired
 	private ITransferDomainService transferDomainService;
-	private IAccountRepository accountRepository;
-	public TransactionApplicationService(ITransferDomainService transferDomainService, IAccountRepository accountRepository) {
+	@Autowired
+	private BankAccountRepository accountRepository;
+	
+	/*public TransactionApplicationService(ITransferDomainService transferDomainService, IAccountRepository accountRepository) {
 		this.transferDomainService = transferDomainService;
 		this.accountRepository = accountRepository;
-	}
-	public TransactionApplicationService() {
+	}*/
+	/*public TransactionApplicationService() {
 		this.transferDomainService = new TransferDomainService();
 		this.accountRepository = new AccountHibernateRepository();
-	}
+	}*/
 	
 	@Override
+	@Transactional
 	public NewTransferResponseDto performTransfer(NewTransferDto newTransferDto) {
 		// TODO UnitOfWork
 		//Account originAccount = new Account() {{set_id(1);setNumber("10001");setBalance(1000);}};
@@ -31,9 +38,10 @@ public class TransactionApplicationService implements TransactionApplicationServ
 		Account destinationAccount = accountRepository.getByNumberWithUpgradeLock(newTransferDto.toAccountNumber);
 		//GetByNumberWithUpgradeLock
 		double amount = newTransferDto.amount;
+		transferDomainService.performTransfer(originAccount, destinationAccount, amount);
 		accountRepository.saveOrUpdate(originAccount);
 		accountRepository.saveOrUpdate(destinationAccount);
-		transferDomainService.performTransfer(originAccount, destinationAccount, amount);
+		
 		return new NewTransferResponseDto(){{
 				httpStatusCode=201;
 				stringResponse="";

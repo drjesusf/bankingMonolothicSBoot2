@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 	public CustomerHibernateRepositoryImpl() {
 		
 	}
+	
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<Customer> get(int page,int pageSize){
 		List<Customer> customers= null;
@@ -26,6 +28,7 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 		customers = criteria.list();
 		return customers;
 	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public Customer getIdentityDocument(String identityDocument) {
@@ -36,6 +39,7 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 		return customer;
 		 
 	}
+	
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<Customer> getByLastname(String lastName) {
@@ -44,5 +48,18 @@ public class CustomerHibernateRepositoryImpl extends HibernateRepository<Custome
 		criteria.add(Restrictions.like("lastName", lastName));
 		customers = criteria.list();
 		return customers;
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public Customer get(long customerId) {		
+		//Customer customer = getSession().get(Customer.class,customerId,"c");
+		Customer customer = null;
+		Criteria criteria = getSession().createCriteria(Customer.class, "c");
+		criteria.createAlias("c.accounts", "a", JoinType.LEFT_OUTER_JOIN);
+		criteria.add(Restrictions.eq("c.id", customerId));
+		customer = (Customer)criteria.uniqueResult();
+		
+		return customer;
 	}
 }

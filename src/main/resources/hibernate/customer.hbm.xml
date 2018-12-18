@@ -11,7 +11,7 @@
         <property name="firstName" column="first_name"/>
         <property name="lastName" column="last_name"/>
         <property name="isActive" column="active"/>
-         <set name="accounts" inverse="true" cascade="all">
+         <set name="accounts" inverse="true" cascade="all" lazy="false">
             <key column="customer_id" not-null="true"/>
             <one-to-many class="banking.ads.domain.accounts.entities.Account"/>
         </set>

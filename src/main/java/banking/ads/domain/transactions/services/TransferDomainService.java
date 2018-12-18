@@ -6,6 +6,7 @@ import banking.ads.domain.transactions.contracts.ITransferDomainService;
 import seedWork.Notification;
 import seedWork.Service;
 
+@org.springframework.stereotype.Service
 public class TransferDomainService extends Service implements ITransferDomainService {
 
 	public void performTransfer(Account originAccount, Account destinationAccount, double amount) {
