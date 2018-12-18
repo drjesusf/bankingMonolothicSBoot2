@@ -26,7 +26,7 @@ public class AccountController {
 	@Autowired
 	ResponseHandler responseHandler;
 	
-	@RequestMapping(path = "", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{customerId}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> create(@PathVariable("customerId") long customerId, @RequestBody BankAccountDto bankAccountDto) throws Exception {
         try {
         	accountApplicationService.create(customerId, bankAccountDto);

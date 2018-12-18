@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import banking.ads.application.accounts.contracts.AccountApplicationService;
 import banking.ads.application.accounts.dtos.BankAccountDto;
@@ -25,6 +26,7 @@ public class AccountApplicationServiceImpl implements AccountApplicationService 
 	@Autowired
 	private ModelMapper mapper;
     
+	@Transactional
 	@Override
 	public void create(long customerId, BankAccountDto bankAccountDto) throws Exception {
 		Notification notification = this.createValidation(bankAccountDto);
